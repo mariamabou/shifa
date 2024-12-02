@@ -21,16 +21,40 @@ const openai = new OpenAI({
     apiKey: 'sk-vmZcQ1enDLvyCydGfxNqygbNIk9QMUUZ80JeE7FCSqT3BlbkFJoS7LzpEcKYKBIL-VhXGZPxsBXjjOvf328DI2bqGp8A', // Replace with your actual OpenAI API key
 });
 
+const sharp = require('sharp');
+
+const preprocessImage = async (inputPath, outputPath) => {
+    try {
+        await sharp(inputPath)
+            .grayscale() // Convert to grayscale
+            .resize(1000) // Resize to standardize size
+            .normalize() // Enhance contrast
+            .toFile(outputPath); // Save preprocessed image
+        return outputPath;
+    } catch (error) {
+        console.error('Error preprocessing image:', error);
+        throw error;
+    }
+};
+
+
 app.post('/process-image', upload.single('image'), async (req, res) => {
     try {
         const imagePath = req.file.path;
+        const processedPath = `uploads/processed_${req.file.filename}.png`;
 
-        const result = await Tesseract.recognize(imagePath, 'eng');
+        // Preprocess the image
+        await preprocessImage(imagePath, processedPath);
+
+        // Run OCR on the preprocessed image
+        const result = await Tesseract.recognize(processedPath, 'eng', { psm: 6 });
         const extractedText = result.data.text;
 
+        console.log('OCR Output:', extractedText); // Debugging output for OCR text
+
+        // Prepare OpenAI prompt
         const examples = fs.readFileSync(path.join(__dirname, 'text_files', 'examples.txt'), 'utf-8');
         const guidelines = fs.readFileSync(path.join(__dirname, 'text_files', 'text_guidelines.txt'), 'utf-8');
-
         const prompt = `
         An image of a medical pill bottle and prescription was fed through an OCR package and produced the following text: 
         "${extractedText}"
@@ -45,7 +69,7 @@ app.post('/process-image', upload.single('image'), async (req, res) => {
         ${guidelines}
         `;
 
-        
+        // Refine text with OpenAI
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [
@@ -58,13 +82,16 @@ app.post('/process-image', upload.single('image'), async (req, res) => {
 
         const generatedResponse = response.choices[0].message.content.trim();
         res.json({ success: true, description: generatedResponse });
+
     } catch (error) {
         console.error('Error processing image:', error.message);
         res.status(500).json({ success: false, error: error.message });
     } finally {
+        // Clean up temporary files
         fs.unlinkSync(req.file.path);
     }
 });
+
 
 // Add Prescription Endpoint
 app.post('/add-prescription', (req, res) => {
@@ -74,16 +101,29 @@ app.post('/add-prescription', (req, res) => {
         return res.status(400).json({ success: false, message: 'Prescription name is required.' });
     }
 
-    // Example structure for prescriptions
+    // Extract prescription details
     const prescription = {
-        name: name.split('\n')[0].replace('Medicine: ', ''),
-        details: name.split('\n')[1] || 'No additional details available.', 
+        name: name.split('\n')[0].replace('Medicine: ', '').trim(),
+        details: name.split('\n')[1]?.trim() || 'No additional details available.',
     };
 
-    prescriptions.push(prescription); // Push structured data into the array
-    console.log('Prescriptions:', prescriptions); 
+    // Check if the prescription already exists
+    const prescriptionExists = prescriptions.some(
+        existing => existing.name.toLowerCase() === prescription.name.toLowerCase()
+    );
+
+    if (!prescriptionExists) {
+        // Add the prescription if it does not exist
+        prescriptions.push(prescription);
+        console.log('Prescription added:', prescription);
+    } else {
+        console.log('Duplicate prescription skipped:', prescription);
+    }
+
+    // Always return success
     res.json({ success: true, message: 'Prescription added successfully.' });
 });
+
 
 
 // Get Prescriptions Endpoint
