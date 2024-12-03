@@ -30,31 +30,32 @@ export default function LandingPage() {
             fontSize: '1.2rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007BFF',
+            backgroundColor: '#3D5A80',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
         },
         buttonHover: {
-            backgroundColor: '#0056b3',
+            backgroundColor: '#81A1B3',
         },
     };
 
     return (
         <div style={styles.page}>
+            <h1 style={{ fontSize: '3rem', color: '#000000' }}>RX Reader</h1> {/* Changed size and color */}
             <img
                 src="/logo.png" // Replace with actual logo path
                 alt="App Logo"
-                style={styles.logo}
+                style={{ ...styles.logo, width: '300px' }} // Increased width to 300px
             />
             <button
                 style={styles.button}
                 onClick={() => navigate('/image-scanner')}
                 onMouseEnter={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                onMouseLeave={(e) => (e.target.style.backgroundColor = '#007BFF')}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = '#3D5A80')}
             >
-                Let's Begin!
+                Start Scanning!
             </button>
         </div>
     );
