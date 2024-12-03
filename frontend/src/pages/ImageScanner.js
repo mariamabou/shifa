@@ -38,7 +38,7 @@ export default function ImageScanner() {
     const styles = {
         page: {
             backgroundColor: '#E3F0FF',
-            color: '#000000',
+            color: '#EE7B30',
             fontFamily: 'Arial, sans-serif',
             display: 'flex',
             flexDirection: 'column',
@@ -46,6 +46,14 @@ export default function ImageScanner() {
             justifyContent: 'center',
             height: '100vh',
             padding: '20px',
+        },
+        image: {
+            width: '200px', // Adjust width as needed
+            height: 'auto', // Maintain aspect ratio
+            position: 'absolute', // Positioning image at the top center
+            top: '40px', // Space between top and image
+            left: '50%', 
+            transform: 'translateX(-50%)', // Centering the image
         },
         form: {
             display: 'flex',
@@ -64,7 +72,7 @@ export default function ImageScanner() {
             borderRadius: '8px',
             width: '100%',
             color: '#fff',
-            backgroundColor: '#203448',
+            backgroundColor: '#2B3A67',
         },
         button: {
             padding: '10px 20px',
@@ -72,7 +80,7 @@ export default function ImageScanner() {
             fontSize: '1rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#EE7B30',
+            backgroundColor: '#2B3A67',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -85,7 +93,8 @@ export default function ImageScanner() {
 
     return (
         <div style={styles.page}>
-            <h1>Image Reader</h1>
+        <img src="/logo.png" alt="Logo" style={styles.image} />
+            <h1>Image Scanner</h1>
             <form style={styles.form} onSubmit={handleSubmit}>
                 <input
                     type="file"

@@ -18,9 +18,9 @@ export default function Results() {
 
     const styles = {
         page: {
-            backgroundColor: '#f5f5f5',
+            backgroundColor: '#E3F0FF',
             fontFamily: 'Arial, sans-serif',
-            color: '#333',
+            color: '#EE7B30',
             padding: '20px',
             display: 'flex',
             flexDirection: 'column',
@@ -33,7 +33,8 @@ export default function Results() {
             marginBottom: '20px',
         },
         card: {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#3D5A80',
+            color: '#ffffff',
             padding: '20px',
             borderRadius: '12px',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -55,7 +56,7 @@ export default function Results() {
             fontSize: '1rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007bff',
+            backgroundColor: '#3D5A80',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',

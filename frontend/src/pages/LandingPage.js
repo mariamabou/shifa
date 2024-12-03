@@ -12,7 +12,7 @@ export default function LandingPage() {
 
     const styles = {
         page: {
-            backgroundColor: '#fffff', 
+            backgroundColor: '#E3F0FF', 
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -23,7 +23,7 @@ export default function LandingPage() {
         },
         logo: {
             width: '200px', 
-            marginBottom: '30px',
+            marginBottom: '20px',
         },
         button: {
             padding: '15px 30px',
@@ -37,7 +37,7 @@ export default function LandingPage() {
             transition: 'background-color 0.3s ease',
         },
         buttonHover: {
-            backgroundColor: '#81A1B3',
+            backgroundColor: '#2B3A67',
         },
     };
 
