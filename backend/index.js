@@ -59,8 +59,12 @@ app.post('/process-image', upload.single('image'), async (req, res) => {
         An image of a medical pill bottle and prescription was fed through an OCR package and produced the following text: 
         "${extractedText}"
 
-        Based on this text, generate a simple, user-friendly description of the medicine and its uses. 
-        DO NOT include the prescription number, quantity of pills inside the bottle, or any extraneous information.
+        Based on this text, create a friendly, detailed explanation of the medicine for an elderly user. Ensure it includes:
+        1. The name of the medicine.
+        2. The frequency and dosage of when to take it.
+        3. A simple explanation of what the medicine is used for.
+
+        Make the explanation clear, concise, and reassuring for someone unfamiliar with medical terms.
 
         Examples:
         ${examples}
@@ -93,18 +97,20 @@ app.post('/process-image', upload.single('image'), async (req, res) => {
 });
 
 
-// Add Prescription Endpoint
+// Prescription Endpoint
 app.post('/add-prescription', (req, res) => {
     const { name } = req.body;
 
     if (!name) {
-        return res.status(400).json({ success: false, message: 'Prescription name is required.' });
+        return res.status(400).json({ success: false, message: 'Prescription data is required.' });
     }
 
-    // Extract prescription details
+    // Extract details from the prescription text
+    const lines = name.split('\n'); // Split the text into lines
     const prescription = {
-        name: name.split('\n')[0].replace('Medicine: ', '').trim(),
-        details: name.split('\n')[1]?.trim() || 'No additional details available.',
+        name: lines[0].replace('Medicine: ', '').trim(), // Extract the medicine name
+        frequency: lines[1]?.replace('Frequency:', '').trim() || 'No frequency specified.', // Extract the frequency
+        description: lines[2]?.replace('Description:', '').trim() || 'No description available.', // Extract the description
     };
 
     // Check if the prescription already exists
@@ -123,8 +129,6 @@ app.post('/add-prescription', (req, res) => {
     // Always return success
     res.json({ success: true, message: 'Prescription added successfully.' });
 });
-
-
 
 // Get Prescriptions Endpoint
 app.get('/prescriptions', (req, res) => {

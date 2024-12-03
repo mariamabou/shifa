@@ -1,2 +1,11 @@
-Medicine: Ibuprofen
-Uses: Pain relief and reducing inflammation.
+Name: Tylenol  
+Frequency: Take two tablets every six hours as needed.  
+Description: Tylenol is used to relieve mild to moderate pain and reduce fever. It's often recommended for headaches, muscle aches, and colds. Take with a full glass of water.
+
+Name: Ibuprofen  
+Frequency: Take one tablet every eight hours with food.  
+Description: Ibuprofen is a non-steroidal anti-inflammatory drug (NSAID) that reduces pain, inflammation, and fever. It's commonly used for arthritis, menstrual cramps, and muscle pain.
+
+Name: Alprazolam  
+Frequency: Take one tablet three times daily.  
+Description: Alprazolam is used to treat anxiety, panic attacks, and insomnia. It helps to calm the mind and improve sleep. Only take as prescribed by your doctor.

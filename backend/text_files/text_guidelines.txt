@@ -1,3 +1,8 @@
-1. Be concise and user-friendly.
-2. Focus on medicine name and uses.
-3. Avoid unnecessary technical details.
+1. Be clear, friendly, and reassuring in tone, especially for elderly users.  
+2. Include the following details:  
+   - Name of the medicine.  
+   - How often and how much to take (frequency and dosage).  
+   - A simple explanation of what the medicine is used for.  
+3. Avoid using complex medical terminology; explain terms in simple words.  
+4. Do not include prescription numbers, pill quantities, or irrelevant information.  
+5. Ensure the explanation is brief but covers essential details.  
