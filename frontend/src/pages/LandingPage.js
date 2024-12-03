@@ -12,7 +12,7 @@ export default function LandingPage() {
 
     const styles = {
         page: {
-            backgroundColor: '#fffff', 
+            backgroundColor: '#E3F0FF', 
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -23,21 +23,21 @@ export default function LandingPage() {
         },
         logo: {
             width: '200px', 
-            marginBottom: '30px',
+            marginBottom: '20px',
         },
         button: {
             padding: '15px 30px',
             fontSize: '1.2rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007BFF',
+            backgroundColor: '#3D5A80',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
         },
         buttonHover: {
-            backgroundColor: '#0056b3',
+            backgroundColor: '#2B3A67',
         },
     };
 
@@ -52,7 +52,7 @@ export default function LandingPage() {
                 style={styles.button}
                 onClick={() => navigate('/image-scanner')}
                 onMouseEnter={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
-                onMouseLeave={(e) => (e.target.style.backgroundColor = '#007BFF')}
+                onMouseLeave={(e) => (e.target.style.backgroundColor = '#3D5A80')}
             >
                 Let's Begin!
             </button>
