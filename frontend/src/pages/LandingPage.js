@@ -43,10 +43,11 @@ export default function LandingPage() {
 
     return (
         <div style={styles.page}>
+            <h1 style={{ fontSize: '3rem', color: '#000000' }}>RX Reader</h1> {/* Changed size and color */}
             <img
                 src="/logo.png" // Replace with actual logo path
                 alt="App Logo"
-                style={styles.logo}
+                style={{ ...styles.logo, width: '300px' }} // Increased width to 300px
             />
             <button
                 style={styles.button}
@@ -54,7 +55,7 @@ export default function LandingPage() {
                 onMouseEnter={(e) => (e.target.style.backgroundColor = styles.buttonHover.backgroundColor)}
                 onMouseLeave={(e) => (e.target.style.backgroundColor = '#3D5A80')}
             >
-                Let's Begin!
+                Start Scanning!
             </button>
         </div>
     );
