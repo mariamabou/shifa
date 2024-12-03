@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const PrescriptionPage = () => {
-    const [prescriptions, setPrescriptions] = useState([]); 
-    const [selectedPrescription, setSelectedPrescription] = useState(null); 
+    const [prescriptions, setPrescriptions] = useState([]); // List of prescriptions
+    const [selectedPrescription, setSelectedPrescription] = useState(null); // Selected prescription for popup
 
     // Fetch prescriptions from the backend
     useEffect(() => {
         const fetchPrescriptions = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/prescriptions'); 
-                setPrescriptions(response.data); 
+                const response = await axios.get('http://localhost:3001/prescriptions'); // Fetch prescriptions
+                setPrescriptions(response.data); // Update state with fetched data
             } catch (error) {
                 console.error('Error fetching prescriptions:', error);
             }
         };
-    
+
         fetchPrescriptions();
-    }, []);    
+    }, []);
 
     const styles = {
         page: {
@@ -29,7 +29,6 @@ const PrescriptionPage = () => {
             alignItems: 'center',
             padding: '20px',
             height: '100vh',
-            overflow: 'hidden',
         },
         scrollContainer: {
             height: '300px',
@@ -63,13 +62,13 @@ const PrescriptionPage = () => {
             zIndex: 1000,
         },
         popupContent: {
-            backgroundColor: '#000000',
-            color: '#ffffff',
+            backgroundColor: '#000',
             borderRadius: '12px',
             padding: '20px',
             width: '80%',
             maxWidth: '400px',
             textAlign: 'center',
+            color: '#fff',
         },
         closeButton: {
             marginTop: '10px',
@@ -82,17 +81,16 @@ const PrescriptionPage = () => {
             borderRadius: '8px',
             cursor: 'pointer',
         },
-        addMoreButton: {
-            marginTop: '10px',
+        addButton: {
+            marginTop: '20px',
             padding: '10px 20px',
             fontSize: '1rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007BFF', // blue button
+            backgroundColor: '#007BFF',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
-            marginRight: '10px', 
         },
     };
 
@@ -104,40 +102,41 @@ const PrescriptionPage = () => {
                     <div
                         key={index}
                         style={styles.card}
-                        onClick={() => setSelectedPrescription(prescription)} 
+                        onClick={() => setSelectedPrescription(prescription)} // Open popup with prescription details
                     >
-                        {prescription.name} 
+                        {prescription.name} {/* Display only the name */}
                     </div>
                 ))}
             </div>
 
-            {/* Add More Button */}
-            <button
-                style={styles.addMoreButton}
-                onClick={() => window.location.href = '/image-scanner'} 
-            >
-                Add more
-            </button>
-
             {selectedPrescription && (
                 <div style={styles.popupOverlay}>
                     <div style={styles.popupContent}>
-                        <h2>{selectedPrescription.name}</h2>
-                        <p>{selectedPrescription.details}</p>
+                        <h2>Name: {selectedPrescription.name}</h2>
+                        <p>
+                            <strong>Frequency:</strong> {selectedPrescription.frequency}
+                        </p>
+                        <p>
+                            <strong>Description:</strong> {selectedPrescription.description}
+                        </p>
                         <button
                             style={styles.closeButton}
-                            onClick={() => setSelectedPrescription(null)} 
+                            onClick={() => setSelectedPrescription(null)} // Close popup
                         >
                             Close
                         </button>
                     </div>
                 </div>
             )}
+
+            <button
+                style={styles.addButton}
+                onClick={() => window.location.href = '/'}
+            >
+                Add More
+            </button>
         </div>
     );
 };
 
 export default PrescriptionPage;
-
-
-
