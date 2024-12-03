@@ -21,7 +21,7 @@ const PrescriptionPage = () => {
 
     const styles = {
         page: {
-            backgroundColor: '#121212',
+            backgroundColor: '#E3F0FF',
             color: '#fff',
             fontFamily: 'Arial, sans-serif',
             display: 'flex',

@@ -37,8 +37,8 @@ export default function ImageScanner() {
 
     const styles = {
         page: {
-            backgroundColor: '#121212',
-            color: '#ffffff',
+            backgroundColor: '#E3F0FF',
+            color: '#EE7B30',
             fontFamily: 'Arial, sans-serif',
             display: 'flex',
             flexDirection: 'column',
@@ -47,11 +47,19 @@ export default function ImageScanner() {
             height: '100vh',
             padding: '20px',
         },
+        image: {
+            width: '250px', // Adjust width as needed
+            height: 'auto', // Maintain aspect ratio
+            position: 'absolute', // Positioning image at the top center
+            top: '40px', // Space between top and image
+            left: '50%', 
+            transform: 'translateX(-50%)', // Centering the image
+        },
         form: {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            backgroundColor: '#282828',
+            backgroundColor: '#3D5A80',
             padding: '20px',
             borderRadius: '8px',
             width: '100%',
@@ -64,7 +72,7 @@ export default function ImageScanner() {
             borderRadius: '8px',
             width: '100%',
             color: '#fff',
-            backgroundColor: '#181818',
+            backgroundColor: '#2B3A67',
         },
         button: {
             padding: '10px 20px',
@@ -72,7 +80,7 @@ export default function ImageScanner() {
             fontSize: '1rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007BFF',
+            backgroundColor: '#2B3A67',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
@@ -86,6 +94,7 @@ export default function ImageScanner() {
     return (
         <div style={styles.page}>
             <h1>Image Scanner</h1>
+            <img src="/logo.png" alt="Logo" style={styles.image} />
             <form style={styles.form} onSubmit={handleSubmit}>
                 <input
                     type="file"

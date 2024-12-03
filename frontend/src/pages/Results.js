@@ -20,7 +20,7 @@ export default function Results() {
 
     const styles = {
         page: {
-            backgroundColor: '#121212',
+            backgroundColor: '#E3F0FF',
             color: '#ffffff',
             fontFamily: 'Arial, sans-serif',
             display: 'flex',
@@ -32,7 +32,7 @@ export default function Results() {
         },
         content: {
             textAlign: 'center',
-            backgroundColor: '#282828',
+            backgroundColor: '#3D5A80',
             padding: '20px',
             borderRadius: '8px',
             width: '100%',
@@ -45,7 +45,7 @@ export default function Results() {
             fontSize: '1rem',
             fontWeight: 'bold',
             color: '#ffffff',
-            backgroundColor: '#007BFF',
+            backgroundColor: '#2B3A67',
             border: 'none',
             borderRadius: '8px',
             cursor: 'pointer',
