@@ -131,7 +131,7 @@ const PrescriptionPage = () => {
 
             <button
                 style={styles.addButton}
-                onClick={() => window.location.href = '/'}
+                onClick={() => window.location.href = '/image-scanner'}
             >
                 Add More
             </button>

@@ -17,7 +17,6 @@ function App() {
                 <Route path="/image-scanner" element={<ImageScanner />} />
                 <Route path="/results" element={<Results />} />
                 <Route path="/prescriptions" element={<PrescriptionList />} />
-                <Route path="/image-scanner" element={<ImageScanner />} />
             </Routes>
         </Router>
     );
